@@ -1,0 +1,150 @@
+Project Description: 
+In this game you will given a multitude of questions on the subject of the Medieval Era. In this game your objective is to answer all the questions correctly to slay the dragon.
+This game allows for the player to experience the difficulties of the trail to the dragon, if they were to answer the trivia question incorrectly. You would only be given three lives to answer only 10 questions to get to the dragon. Along this path to the dragon there will be some obstacles that you would have to face, fatal or nonfatal, which will be determined on how many lives you have. If you are on your last life, meaning you got 2 questions incorrect then you will die from a fatal cause on your path. If you manage to have at least 1 life remaining when you answered 10 questions correctly you face the dragon. The dragon is meant to be a harder, free response, portion of the game. If you even fail to answer one of these 4 questions wrong you die. However, if you answer the 4 questions correctly then you save the town from the dragon. 
+Also, as you answer each question correctly your rank will increase. You can get anything from a peasant, farmer, knight, black knight, or even dragon slayer along your journey. You will only be promoted to dragon slayer if you wish to fight and slay the dragon.
+
+Approach:
+To begin with I wrote three classes: Player, Situations, and Question. 
+Player Class: 
+	This class stores the players name, lives and their rank. In this class I also stored a dragons slayer boolean that would store if they get the 	rank of dragon slayer after defeating the dragon. 
+	⁃	The initializer stores the name and automatically starting the new player off with 3 lives and at a zero rank to begin with. I also stored the dragon slayer boolean as False.
+	⁃	The lose_life function basically subtracts one life from the player if they were to get a question wrong.
+	⁃	The upper_rank function adds a point to the players rank leading that to eventually having the player in one of the 5 ranks listed in rank_title (another function).
+	⁃	The rank_title function returns what the players rank should be based on the number of points they have.
+	•	The player would start off with a zero rank hence having them be placed in the ‘PEASANT’ rank. They would be left in the peasant rank until they reach 4. 
+	•	After getting up to a 4 rank, then the player would be placed in a ‘FARMER’ rank until they reach a 7 rank. 
+	•	After getting up to a 7 rank, then the player would be placed in a ‘KNIGHT’ rank until they reach a 10 rank. 
+	•	After getting up to a 10 rank, then the player would be placed in a ‘BLACK KNIGHT’ rank until they reach a 14 rank or if they defeat the dragon, which should return as a ‘DRAGON SLAYER’ rank.
+	•	The ranks are associated with the amount of questions they get right.
+	⁃	in the info function, it should just return the players name, questions they got right (rank number), their ranking, and how many lives they have remaining. 
+
+Question Class:
+	This class stores the questions that will be asked in the game, the choices, and the correct answer.
+	⁃	The initializer stores the question along with the choices and answers. 
+	⁃	In the function printChoices, this will print, when asked on of the questions the correlating choices associated with it, which is a list.
+	⁃	In the function checkAnswer, after what the player chose for the answer the function will return if it is True or False (right or wrong), which is also a list. 
+	•	Before it does that I have made it that if the player types in all capital letters it will revert what they wrote as lower case so it could match the answer I had written.
+	⁃	Following that in the function called validate I made a list of the four answer choices in a list: a, b, c, and d.
+	•	I made sure that if the player doesn’t give an answer within that list then it should return False and have them type in an answer choice that is given (which is written in code later in my project), if they do then it will return True and run through the rest of the game.
+Outside of these classes, since I decided I want these questions to be random and out of order I did define a function called get_random_question so it can call any question in the list to be provided for the player. 
+
+Situation Class:
+	This class stores the different situations the player can run into. To give it the ‘fun’ factor I wanted to ensure that the story line was fun and not a defaulted simulation. So this class had a variety of what could happen on this path to the ‘dragon’ in the game. 
+	⁃	In the initializer I just gave it self since there would be three umbrella of situations that could occur and it would vary.
+	⁃	In nonfatal, this would be an array of situations in the game but not a situation if it would be occur in your last life. 
+	•	I gave it keys: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Totalling out to 10 situations. 
+	•	In each of the key it is given 1 value containing 1 list made up of 3 strings. 
+	•	The first would be the story telling line, then only one of the two other options would be printed depending on if you get the question right or wrong. So getting the question right would lead you to get the better choice (the second string ) if not then it would print the worse option but nonfatal ending, so something undesired would occur.
+	⁃	In fatal, this would also be an array of situations in the game but a situation that occur on your last life. So game ending scenarios.
+	•	I gave it keys:  0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Totalling out to 10 situations. 
+	•	In each of the key it is given  1 value containing 1 list made up of 3 strings. 
+	•	The first would be the story telling line, then only one of the two other options would be printed depending on if you get the question right or wrong. So getting the question right would lead you to get the better choice and you wouldn’t die(the second  string ), if not then it would print the worse option, the fatal ending, so something undesired would occur. 
+	⁃	Finally, there are dragon questions. These questions would be provided in the final free response choices in the dragon (last) part of the game. 
+	•	I gave it only two keys: 1 and 2. These keys would map to endings which are stored as strings.
+	•	One of the ending is if you answered all the questions correctly, hence winning. 
+	•	The other ending is if you answered one of the four dragon questions wrong, hence dying immediately.
+This wraps up the classes.
+
+Moving on to the next cell (the actual part of the code/story):
+Here you will find that I set multiple questions to either starter, easy, medium, hard, and dragon.
+	⁃	Each of these groups are separated by how hard the questions are 
+	⁃	The starter question is the generic question that would determine whether or not the question should more up in difficulty or not (which is written in code later). 
+	⁃	I gave 5 easy questions to the game 
+	•	For each question I called the Question class and gave it a string which contained the question, followed by a comma to include the answer choices in a string , and another comma with the correct answer choice in another string. 
+	⁃	I gave 6 medium questions to the game 
+	•	For each question I called the Question class and gave it a string which contained the question, followed by a comma to include the answer choices in a string , and another comma with the correct answer choice in another string. 
+	⁃	I gave 9 hard questions to the game, since you would only be given 10 questions total (including the starter)
+	•	For each question I called the Question class and gave it a string which contained the question, followed by a comma to include the answer choices in a string , and another comma with the correct answer choice in another string. 
+	⁃	And I gave 4 free response questions to the dragon portion
+	•	For each question I called the Question class and gave it a string which contained the question, followed by a comma to include an empty string since the player would be inputting the answer themselves, and another comma with the different varieties of answers the computer could accept that is right since it is free response. 
+	⁃	I then grouped the questions to the appropriate difficulties: easyQuestions, mediumQuestions, hardQuestions, and dragonQuestions so it would be easy to call them later in the code.
+
+
+Here I begin printing and starting my game. 
+I printed two dashed lines before and after for spacing and aesthetic purposes with the title of the game I had given it ‘Hello! Welcome to Dragon Slayer: The Return of the Dragon’
+
+I printed some background of the game following that so the player can have an idea of what the game is, how it will be formatted, and idea of what to expect.
+
+I began the game by having it ask a question to the player, asking if they want to play. I used to the variable play to assign it to the string. From there if the player said yes then the ‘if’ loop will run. 
+The play.lower is inputed so that if the player replies with a capital letter it will automatically run lowercase so it can run through. 
+If the player replies with ’n’ for no then the code will end and nothing else will run. 
+
+After the player says ‘y’, yes, to continue the next thing the code does is take the variable name and insert what you reply with the question asking what your name is. Your name will then be taken as the name variable leading back to insert it under the player name/players info, so it can be used throughout the game and at the end when it lists your information. 
+Continuing it will print two other strings and asking the plater if they wish to continue under the ready_up variable. 
+Then if the player says ‘y’ (yes) then a new if loop will start. 
+But if the player says ’n’ (no) then it will print a funny message still reverting you to go through the if loop. 
+
+Inside this if loop, it will print two lines, in-between it will print a message about your journey and what the rules are going to be, wishing you luck at the end. 
+It will print a one time scenario in the beginning of the game in the print string. 
+
+I set situations to equal Situations () so I can input the type of situations I want to call later on in the questions (fatal, nonfatal, dragon).
+
+I set previous_question to starter because it wouldn’t start off with an easy or hard or medium question, its just the starter question.
+I also had set the pervious_result to False as a default (just a personal choice).
+
+I started to print the start question and called the choices so it could display for the player. Below that I made sure to assign answer to their ‘CHOICE: ‘, so they can see visually what they need to input in the answer box. 
+
+I began a while loop inside this if statement so that if there was a false input, meaning that they inputed an answer choice that is invalid. If they do this I made sure that the computer will tell then that the answer is invalid and that they need to type in a valid answer choice so it can move on. 
+
+Outside of that while loop, I started a if and else statement that if they answered true to the first starter question, they would get a rank point and it would print a message. But if they got the starter question wrong then they won’t get a point so nothing was written and then a message/string would print. 
+
+Outside of the if and else loop, I had to set a counter to zero. 
+I set the counter to zero so that it starts at zero and counts which question the player is on, all the way up to 9 because they only need to get 10 questions right, since we started at zero. 
+
+I started a while loop:
+	•	I said if the counter/question is less than 9 and if the player still has lives left and if the question is labeled as easy then:
+	⁃	if the last question they answered was right then:
+	⁃	idx gets a random integer between 0 and the largest index in the list, this will be what I use to index one of the questions lists 
+	⁃	We then et the question that corresponds to that index from the question list 
+	⁃	then we would remove that question from the list so that it doesn’t appear in the game again, hence the del portion.
+(WE DO THIS FOR EVERY LEVEL OF QUESTION)
+	- Within this while loop we determine what question will be picked out from if they get the question right or wrong. 
+		- If they get the question right it will increase in difficulty, if they aren’t on the hard questions already 
+		- However, if they get the question wrong it would decrease in difficulty, if they aren’t on the easiest questions already. 
+
+
+Then out of the if else loop, we establish another variable, but still in the while loop. 
+Fatal would equal true in this if else block:
+	⁃	Only if the players lives are still more than one then fatal would be false causing it to run through the nonfatal events. 
+
+
+We set idx to a random number between 0 and 9, and if that number still exists as a situation then we get that situation and remove it from the dictionary, otherwise we keep getting random numbers until we find one that is in the dictionary.
+
+In another if else block we would begin to describe the the situations and call the situation class:
+	⁃	if fatal is True:
+	•	I began a while loop so that if the idx is not in the situations of fatal events, then it would print out the scenarios in the idx. 
+	•	the scene would be given in a fatal situation 
+	•	then that situation would be deleted after the situation/scenario has been used in 0 through 9.
+	⁃	else(meaning if fatal is not true, and if it nonfatal):
+	•	I began another while loop so if the idx is not in the situations of fatal events, then would print out the scars in the idx of nonfatal events. 
+	•	the scene would be given in a nonfatal situation 
+	•	then that situation would be deleted after the situation/scenario has been used in 0 through 9.
+
+Then it would print out the given scene that the computer has chosen. 
+Followed by a new line.
+
+Following that, I added a print statement to print out the questions and the choices along with an answer line for the player to input their ‘CHOICE: ‘.
+Similarly to above, I ensured that if the player had given an invalid answer the game would print out answer invalid, try again. 
+
+If the answer they had inputted was true then I would call the player rank and up their ranking status. 
+Then I would print the positive scenario of the string from the situation class. (The second string). Along with the words correct so the player knows they got it right. 
+
+However, if they got the question incorrect, it would print out incorrect and then play out the bad scenario from the situation class depending on if it was fatal or not from the 3rd string. And the player wouldn’t get a point (ranking point) so they would remain the same. 
+
+
+Out of this while loop, this would be moving on the to dragon questions. If they made it this far, so they didn’t answer more than 2 questions wrong. 
+
+Here there would be a text block printed with more about the game situations and inputing the answer from the player on if they wish to continue. 
+	⁃	If they said yes then:
+	•	it would print a text, more of the story line 
+	•	I set win to take in variable True. 
+	•	I set the counter 0 so that we can count how many times it will run through this for loop. 
+	⁃	I added a for loop so that for every question in the dragonQuestions , after I get their input I need to check if their answer to that question is correct and this would continue until they reach the counter to 3. The counter would increase by one every time this loop is ran. So it would run through this loop 3 times before the loop would break.  And when it runs three times, only if the player gets the question right it will print as message.
+	⁃	If the player gets the question wrong then it would print the players info containing (name, rank, how many questions they got right, and their lives remaining.
+	•	If the player gets all the questions right then it would print the first option from the dragon situations, hence calling that class
+	•	if the player gets one of the four questions wrong in the dragon portion of the game it will automatically run the second situation from the situation class of dragon. 
+	⁃	If they answer no to continuing then a message would appear and the player stats would show up. 
+
+If you run out of lives in general it prints out a different outcome than the dragon situation. But this message would be printed on the multiple choice portion of the game and not the free response (dragon portion).
+
+Once again, as mentioned above, I ended my code with the else from the first portion, which is outside of all of this inner lying of code, if the player doesn’t wish to play the game, it should print a message. 
